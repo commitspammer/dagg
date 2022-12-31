@@ -1,0 +1,82 @@
+subInit(n1: int, n2: int) : [int] {
+    v: [int] <- []
+    v << n1
+    v << n2
+    retorne v
+}
+
+subIgual(r1: [int], r2: [int]) : bool {
+    se r1[0] * r2[1] = r1[1]*r2[0] {
+        retorne verdadeiro
+    } senao {
+        retorne falso
+    }
+}
+
+subSoma(r1: [int], r2: [int]) : [int] {
+    se r1[1] = r2[1]{
+        retorne [r1[0]+r2[0], r1[1]]
+    } senao {
+        retorne [r2[1]*r1[0]+ r1[1]*r2[0], r1[1]*r2[1]]
+    }
+    
+}
+subSub(r1: [int], r2: [int]) : [int] {
+    se r1[1] = r2[1]{
+        retorne [r1[0]-r2[0], r1[1]]
+    } senao {
+        retorne [r2[1]*r1[0]- r1[1]*r2[0], r1[1]*r2[1]]
+    }
+}
+
+subDiv(r1: [int], r2: [int]) : [int] {
+    retorne [r1[0]*r2[1], r1[1]*r2[0]]
+}
+
+subMult(r1: [int], r2: [int]) : [int] {
+    retorne [r1[0]*r2[0], r1[1]*r2[1]] 
+}
+
+subInv(r1: [int]) : [int] {
+    retorne [r1[1], r1[0]]
+}
+
+subNeg(r1: [int]) : [int] {
+    retorne [r1[0]*-1, r1[1]]
+}
+
+printRat(str : texto, r : [int]) {
+    escreva str, " "
+    para i em [0..$r] {
+        se i = 0 {
+            escreva r[i], "/"
+        } senao {
+            escreva r[i]
+        }
+
+    }
+    escreva "\n"
+}
+
+main() {
+	n1, d1: int
+	n2, d2: int
+
+	leia n1, d1
+	leia n2, d2
+
+	rg1: [int] <- subInit(n1, d1)
+	rg2: [int] <- subInit(n2, d2)
+
+    printRat("rg1: " , subInit(n1, d1))
+    printRat("rg2: " , subInit(n2, d2))
+    escreva "subIgual: " , subIgual(rg1, rg2), "\n"
+    printRat("subSoma: " , subSoma(rg1, rg2))
+    printRat("subSub: " , subSub(rg1, rg2))
+    printRat("subDiv: " , subDiv(rg1, rg2))
+    printRat("subMult: " , subMult(rg1, rg2))
+    printRat("subInv: " , subInv(rg1))
+    printRat("subNeg: " , subNeg(rg1))
+}
+
+

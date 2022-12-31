@@ -1,0 +1,27 @@
+mdc(n:int ,m: int,r: [int]) {
+	se m < 1 | n < 1 {
+		r << -1
+	} senao se m % n = 0 {
+		r << n
+	} senao se n % m = 0 {
+		r << m
+	} senao se m > n {
+		mdc(n,m%n,r)
+	} senao {
+		mdc(m,n%m,r)
+	}  
+}
+
+
+
+
+main() {
+a,b : int
+c : [int] <- []
+leia a, b
+mdc(a,b,c)
+para i em c {
+	escreva i, "\n"
+}
+
+}

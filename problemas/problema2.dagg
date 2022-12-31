@@ -1,0 +1,45 @@
+problema2(a: int) : texto {
+    se a >= 0 & a <= 25 {
+        retorne "r1"   
+    }
+    senao se a >= 26 & a <= 50 {
+        retorne "r2"
+    }
+    senao se a >= 51 & a <= 75 {
+        retorne "r3"
+    }
+    senao se a >= 76 & a <= 100 {
+        retorne "r4"
+    }
+    senao se a < 0 {
+        retorne "nada"
+    }
+    senao {
+        retorne "naovalido"
+    }
+}
+
+main() {
+    r1 : int <- 0
+    r2 : int <- 0
+    r3 : int <- 0
+    r4 : int <- 0
+    c : int <- 0
+    enquanto c >= 0 {
+		leia c
+        problema2(c)
+        se problema2(c) = "r1"{
+            r1 <- r1 +1
+        } senao se problema2(c) = "r2" {
+            r2 <- r2 +1
+        } senao se problema2(c) = "r3" {
+            r3 <- r3 +1
+        } senao se problema2(c) = "r4" {
+            r4 <- r4 +1
+        }
+    }
+    escreva "[0,25]: ", r1, "\n"
+    escreva "[26,50]: ", r2, "\n"
+    escreva "[51,75]: ", r3, "\n"
+    escreva "[76,100]: ", r4, "\n"
+}

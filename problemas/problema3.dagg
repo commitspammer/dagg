@@ -1,0 +1,100 @@
+trash : [int]
+
+init_matriz(lin: int,col: int ): [[int]] {
+	matriz : [[int]] <- [[]]
+	matriz >> trash
+	para i em [0..lin] {
+		matriz << []
+		para j em [0..col] {
+			matriz[i] << 0
+		}
+	}
+	retorne matriz
+}
+
+soma_matriz(m1: [[int]], m2: [[int]]) : [[int]]{
+	se $m1 > $m2 {
+		retorne init_matriz(1,1);
+	}
+	se $m1[0] > $m2[0] {
+		retorne init_matriz(1,1);
+	}
+	escreva ""
+	m3 : [[int]] <- [[]]
+	m3 >> trash
+	se $m1 = $m2 {
+		para i em [0..$m1] {
+			m3 << [] 
+			para j em [0..$m1[0]] {
+				m3[i] <<  m1[i][j] + m2[i][j]
+			}
+		}
+		retorne m3
+	} 
+	senao {
+		escreva "as matrizes tem tamanhos distintos, logo não é possivel realizar operacões com elas"
+	}
+}
+
+produto_matriz(m1: [[int]], m2: [[int]]) : [[int]] {
+	m3 : [[int]] <- init_matriz($m1,$m2[0])
+	para i em [0..$m1] {
+		para j em [0..$m2[0]] {
+			aux : int <- 0
+			para k em [0..$m2] {
+				aux <- aux + (m1[i][k] * m2[k][j])
+			}
+			m3[i][j] <- aux;
+		}
+	}
+	retorne m3
+}
+
+imprime_matriz(matriz: [[int]]) : texto {
+	para i em [0..$matriz] {
+		para j em [0..$matriz] {
+			escreva "|", matriz[i][j], "|"
+		}
+		escreva "\n"
+	}
+	escreva "\n"
+}
+
+main() {
+	input1 : int
+	l1 : int
+	c1 : int
+	escreva "Digite a quantidade de linhas da primeira matriz "
+	leia l1
+	escreva "Digite a quantidade de colunas da primeira matriz "
+	leia c1
+	escreva "Digite a primeira matriz: "
+	a : [[int]] <- [[]]
+	a >> trash
+	para i em [0..l1] {
+		a << []
+		para j em [0..c1] {
+			leia input1
+			a[i] << input1
+		}
+	}  
+	input2: int
+	l2 : int
+	c2 : int
+	escreva "Digite a quantidade de linhas da segunda matriz "
+	leia l2
+	escreva "Digite a quantidade de colunas da segunda matriz "
+	leia c2
+	escreva "Digite a segunda matriz: "
+	b : [[int]] <- [[]]
+	b >> trash
+	para i em [0..l2] {
+		b << []
+		para j em [0..c2] {
+			leia input2
+			b[i] << input2
+		}
+	}
+	imprime_matriz(soma_matriz(a,b))
+	imprime_matriz(produto_matriz(a,b))
+}

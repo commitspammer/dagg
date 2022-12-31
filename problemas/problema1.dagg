@@ -1,0 +1,7 @@
+main() {
+	x: real
+	y: real
+	c: texto
+	leia x, y, c 
+	escreva (x * x) - y + c
+}
